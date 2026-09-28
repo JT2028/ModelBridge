@@ -94,7 +94,7 @@ To find those numbers, the paper used some density field theory + localized Wann
 ```
 </div>
 
-Hello Note here `np.zeros((3,4,9), dtype=float)` is following the convention that the needed parameters has 
+Note here `np.zeros((3,4,9), dtype=float)` is following the convention that the needed parameters has 
 
 * 3 kinds of $C_3$ invariant strain: unstrained ($1$), the scalar strain ($u_{xx}+u_{yy}$) which is a trace over the strain tensor, the plane span by differential and shear strain ($u_{xx}-u_{yy}$ and $2u_{xy}$). (Further information look into character table for irreducible representations of $C_3$ group restricted to $\mathbb{R}$ matrix entries.)
 * 4 kinds of neighbors: $i \in \{0, 1, 2, 3\}$
