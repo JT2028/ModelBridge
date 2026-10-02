@@ -94,3 +94,74 @@ $$
 
 Then $UHU^\dagger$ will give the constructed Hamiltonian from [Pearce et all. (2016)](references.md#pearce2016) in basis of [Fang et al. (2018)](references.md#fang2018).
 
+</figure>
+
+
+## Localized Orbital
+
+It turns out to be much easier to construct [Pearce et all. (2016)](references.md#pearce2016) Hamiltonian in localized orbtial. So I decided to do that:
+
+$$
+\mathcal{B}_L =
+\left\{
+\underbrace{d_{xz},d_{yz}}_{A},
+\ 
+\underbrace{p_x^{\mathrm{lower}},p_{y}^{\mathrm{lower}},p_z^{\mathrm{lower}}}_{B \ \& \ D},
+\ 
+\underbrace{d_{x^2-y^2},d_{xy},d_{z^2}}_{C},
+\ 
+\underbrace{p_x^{\mathrm{upper}},p_{y}^{\mathrm{upper}},p_z^{\mathrm{upper}}}_{B \ \& \ D}
+\right\}
+$$
+
+
+### Slater–Koster `d-p` convention
+
+Pearce writes the nearest-neighbor hopping as
+
+\[
+H_{pd}
+=
+\sum t^{ij}_{\nu\mu}\,
+d^\dagger_{\nu,i} p_{\mu,j}
++\mathrm{H.c.}
+\]
+
+so in our Hamiltonian matrix:
+
+- rows = `d` orbitals
+- columns = `p` orbitals
+- the block shape is `5 × 3`
+
+However, the original Slater–Koster table is written using entries like
+
+\[
+E_{p_x,d_{xz}},
+\]
+
+i.e. in the orbital order `p -> d`.
+
+Our code instead uses the physical bond vector in the direction
+
+\[
+\mathbf r = \mathbf r_p-\mathbf r_d,
+\]
+
+so the convention is `d -> p`.
+
+Since `p-d` hopping is odd under bond reversal,
+
+\[
+E_{d,p}(\mathbf r)
+=
+E_{p,d}(-\mathbf r)
+=
+- E_{p,d}(\mathbf r).
+\]
+
+Therefore the `SK` dictionary is rewritten directly in our convention:
+
+```python
+SK[("dxz", "px")]
+SK[("dyz", "pz")]
+```
